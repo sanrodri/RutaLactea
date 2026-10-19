@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruta Lactea </title>
+    <title> Ruta Lactea </title>
+   
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
     <link  rel="stylesheet"  href="/RutaLactea/css/style.css">
    
     
@@ -13,22 +15,27 @@
 
 <div class="container">
     <div class="form-content">
-        <h1 id="title">Entrega</h1>
+        <h1 id="title">Nueva entrega</h1>
 
         <form>
             <div class="input-group">
 
-                <div class="input-field" id="routeSelectionInput">
+                <fieldset class="input-field" id="routeSelectionInput">
+                    <legend>
+                        Ruta de reparto
+                    </legend>
                     <label>
                         <input type="radio"  id="routeSelectionFenicia" name="routeSelection_name" value="fenicia" required>
-                        📍 Fenicia
+                        <img class="pin" src="/RutaLactea/assets/pin-fenicia.png" alt="pin">
+                        Fenicia
                     </label>
 
                     <label>
                         <input type="radio"  id="routeSelectionOvero" name="routeSelection_name" value="overo" required>
-                        📍 El Overo
+                        <img class="pin" src="/RutaLactea/assets/pin-overo.png" alt="pin">
+                        El Overo
                     </label>
-                </div>
+                </fieldset>
 
                 <div class="input-field" id="clientInput">
                     <label>
@@ -63,7 +70,10 @@
                     <small id="totalDetail">Ingresa litros y precio</small>
                 </div>
                 <div class="button-field">
-                    <button  id="registerButton" type="submit">Registrar entrega</button>
+                    <button  id="registerButton" type="submit">
+                        <img class="truck" src="/RutaLactea/assets/camion.png" alt="camion">
+                        Registrar entrega
+                    </button>
                 </div>
 
             </div>
@@ -72,9 +82,6 @@
 </div>
         
 
-
-
-
-    <script src="/RutaLactea/controllers/script.js"></script>
+ <script src="/RutaLactea/controllers/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,274 @@
+:root {
+    /* Fondos */
+    --bg: #0D1823;          /* fondo de la página (azul noche) */
+    --surface: #142230;     /* fondo de la tarjeta del formulario */
+    --surface-2: #192A3B;   /* fondo de los inputs y del total */
+
+    /* Textos */
+    --ink: #E6EFF5;         /* texto principal (casi blanco) */
+    --muted: #9BB0C0;       /* texto secundario (gris azulado) */
+    --line: #243A4E;        /* bordes y líneas */
+
+    /* Color principal (botón, botella, foco) */
+    --blue: #6FA8E8;
+    --blue-soft: #1C3450;   /* versión suave para fondos */
+
+    /* Colores de cada ruta */
+    --fenicia: #6FA8E8;       /* azul */
+    --fenicia-soft: #1C3450;
+    --overo: #E580AE;         /* rosado (leche de fresa) */
+    --overo-soft: #3A1F2E;
+
+    /* Mensajes */
+    --danger: #F07A6E;      /* errores y alertas */
+    --milk: #F2F6F8;        /* la leche de la botella */
+
+    /* Tipografias */
+    --display: "Fredoka", "Trebuchet MS", sans-serif;
+    --body: "Figtree", "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+
+    /* le dice al navegador que la página es oscura (calendario y flechas en claro) */
+    color-scheme: dark;
+}
+
+/* ---------- Reinicio ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--body);
+    background: var(--bg);
+    color: var(--ink);
+}
+
+fieldset {
+    border: none;
+}
+
+/* ---------- Página y tarjeta ---------- */
+.container {
+    width: 100%;
+    min-height: 100vh;          /* mínimo la pantalla, crece si hace falta */
+    padding: 32px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-content {
+    width: 100%;
+    max-width: 420px;
+    padding: 26px 22px 22px;
+    background-color: var(--surface);
+    border-radius: 18px;
+    box-shadow: 0 10px 28px -14px rgba(0, 0, 0, 0.6);
+}
+
+#title {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 14px;       /* espacio entre el texto y la línea */
+    margin-bottom: 18px;        /* espacio entre la línea y el formulario */
+    border-bottom: 2px dashed var(--line);
+}
+
+/* ---------- Cuadrícula del formulario ---------- */
+.input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;     /* dos columnas iguales */
+    gap: 16px 12px;                      /* 16px entre filas, 12px entre columnas */
+}
+
+/* todos los bloques ocupan el ancho completo... */
+.input-group > * {
+    grid-column: 1 / -1;
+}
+
+/* ...menos cantidad y precio, que van lado a lado */
+#milkQuantityInput,
+#milkPriceInput {
+    grid-column: auto;
+}
+
+/* ---------- Etiquetas ---------- */
+.input-field label {
+    display: flex;
+    flex-direction: column;     /* texto arriba, input abajo */
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+legend {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* ---------- Inputs ---------- */
+input {
+    width: 100%;
+    padding: 11px 12px;
+    background: var(--surface-2);
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    color: var(--ink);
+    font: inherit;              /* los inputs no heredan la fuente solos */
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input::placeholder {
+    color: var(--muted);
+    opacity: 0.75;
+}
+
+/* cuando el usuario está escribiendo en el input */
+input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px var(--blue-soft);
+}
+
+/* ---------- Tarjetas de ruta ---------- */
+#routeSelectionInput {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+#routeSelectionInput legend {
+    grid-column: 1 / -1;        /* el título ocupa las dos columnas */
+}
+
+#routeSelectionInput label {
+    flex-direction: row;        /* aquí sí van en fila: radio + texto */
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-2);
+    cursor: pointer;
+    font-family: var(--display);
+    font-size: 17px;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+#routeSelectionInput label:hover {
+    transform: translateY(-1px);
+}
+
+/* deshace el width: 100% de los inputs para que el radio no sea gigante */
+#routeSelectionInput input[type="radio"] {
+    width: auto;
+    padding: 0;
+    accent-color: var(--blue);
+}
+
+/* la tarjeta de la ruta elegida se pinta del color de esa ruta */
+#routeSelectionInput label:has(#routeSelectionFenicia:checked) {
+    border-color: var(--fenicia);
+    background: var(--fenicia-soft);
+}
+
+#routeSelectionInput label:has(#routeSelectionOvero:checked) {
+    border-color: var(--overo);
+    background: var(--overo-soft);
+}
+
+#routeSelectionOvero {
+    accent-color: var(--overo);
+}
+
+/* ---------- Total a cobrar ---------- */
+.total-field {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 16px;
+    background: var(--surface-2);
+    border-radius: 14px;
+}
+
+.total-field span {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+#totalAmount {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+#totalDetail {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* ---------- Botón ---------- */
+.button-field {
+    display: flex;
+}
+
+.button-field button {
+    flex-basis: 100%;
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 12px;
+    background-color: var(--blue);
+    color: var(--bg);
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.15s, transform 0.1s;
+}
+
+.button-field button:hover {
+    filter: brightness(1.08);
+}
+
+.button-field button:active {
+    transform: translateY(1px);
+}
+
+/* ---------- Celulares muy pequeños ---------- */
+@media (max-width: 380px) {
+    .input-group,
+    #routeSelectionInput {
+        grid-template-columns: 1fr;     /* todo en una sola columna */
+    }
+}
+
+/* ---------- Íconos (imágenes en la carpeta assets) ---------- */
+/* pin de ubicación de cada ruta */
+.pin {
+    width: 18px;
+    height: 18px;
+    flex: none;                 /* que no se encoja */
+}
+
+/* camión del botón */
+.truck {
+    width: 20px;
+    height: 20px;
+}
+
+/* camión del botón: ícono y texto centrados en la misma fila */
+.button-field button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
