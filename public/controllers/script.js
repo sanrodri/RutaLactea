@@ -11,7 +11,7 @@ milkPriceInput.addEventListener("input",calculeTotal);
 milkQuantityInput.addEventListener("keydown",blockInvalidKeys);
 milkPriceInput.addEventListener("keydown",blockInvalidKeys);
 
-//instruciones
+//Calcula el monto  total 
 function calculeTotal() {
 
     const litros = Number(milkQuantityInput.value);
@@ -20,7 +20,7 @@ function calculeTotal() {
     const total = litros * precio ;
     totalAmount.textContent = "$ " + total.toLocaleString("es-CO");
 
-  
+//modificador del "totalDetail" ,este cambia depiendo de los datos ingresados 
     if (litros <= 0 && precio <= 0) {
         // faltan los dos
         totalDetail.textContent = "Ingresa litros y precio";

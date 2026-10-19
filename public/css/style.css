@@ -243,13 +243,7 @@ input:focus {
     transform: translateY(1px);
 }
 
-/* ---------- Celulares muy pequeños ---------- */
-@media (max-width: 380px) {
-    .input-group,
-    #routeSelectionInput {
-        grid-template-columns: 1fr;     /* todo en una sola columna */
-    }
-}
+
 
 /* ---------- Íconos (imágenes en la carpeta assets) ---------- */
 /* pin de ubicación de cada ruta */
