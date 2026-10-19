@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta Lactea </title>
+    <link  rel="stylesheet"  href="/RutaLactea/css/style.css">
+   
+    
+</head>
+<body>
+
+
+<div class="container">
+    <div class="form-content">
+        <h1 id="title">Entrega</h1>
+
+        <form>
+            <div class="input-group">
+
+                <div class="input-field" id="routeSelectionInput">
+                    <label>
+                        <input type="radio"  id="routeSelectionFenicia" name="routeSelection_name" value="fenicia" required>
+                        📍 Fenicia
+                    </label>
+
+                    <label>
+                        <input type="radio"  id="routeSelectionOvero" name="routeSelection_name" value="overo" required>
+                        📍 El Overo
+                    </label>
+                </div>
+
+                <div class="input-field" id="clientInput">
+                    <label>
+                        Cliente
+                        <input type="text"  id="client" name="client_name" placeholder="Ej. Tienda de Juan" required>
+                    </label>
+                </div>
+
+                <div class="input-field" id="milkQuantityInput">
+                    <label>
+                        Cantidad de leche
+                        <input type="number"  id="milkQuantity" name="milkQuantity_name" placeholder="0" min="0" required>
+                    </label>
+                </div>
+
+                <div class="input-field" id="milkPriceInput">
+                    <label>
+                        Precio por litro
+                        <input type="number"  id="milkPrice" name="milkPrice_name" placeholder="0" min="0" required>
+                    </label>
+                </div>
+
+                <div class="input-field" id="deliveryDateInput">
+                    <label>
+                        Fecha de entrega
+                        <input type="date"  id="deliveryDate" name="deliveryDate_name" required>
+                    </label>
+                </div>
+                <div class="total-field">
+                    <span>Total a cobrar</span>
+                    <p id="totalAmount">$ 0</p>
+                    <small id="totalDetail">Ingresa litros y precio</small>
+                </div>
+                <div class="button-field">
+                    <button  id="registerButton" type="submit">Registrar entrega</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+        
+
+
+
+
+    <script src="/RutaLactea/controllers/script.js"></script>
+</body>
+</html>
