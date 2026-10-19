@@ -48,3 +48,36 @@ function blockInvalidKeys(event) {
         event.preventDefault();
     }
 }
+
+// Guardar la entrega 
+const form = document.querySelector("form");
+form.addEventListener("submit", saveDelivery);
+
+async function saveDelivery(event) {
+    event.preventDefault(); // que la página no se recargue
+
+    // 1. Armar un objeto con los datos del formulario
+    const entrega = {
+        ruta: document.querySelector('input[name="routeSelection_name"]:checked').value,
+        cliente: document.querySelector("#client").value.trim(),
+        litros: Number(milkQuantityInput.value),
+        precio: Number(milkPriceInput.value),
+        fecha: document.querySelector("#deliveryDate").value
+    };
+
+    // 2. Enviarlo al servidor
+    const respuesta = await fetch("/api/entregas", {
+        method: "POST",                                   // vamos a ENVIAR datos
+        headers: { "Content-Type": "application/json" },  // le avisamos que van en JSON
+        body: JSON.stringify(entrega)                     // convertimos el objeto a texto JSON
+    });
+
+    // 3. Revisar si se guardó
+    if (respuesta.ok) {
+        alert("Entrega registrada ");
+        form.reset();     // limpia el formulario
+        calculeTotal();   // el total vuelve a $ 0
+    } else {
+        alert("No se pudo guardar la entrega ");
+    }
+}
